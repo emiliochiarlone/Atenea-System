@@ -6,6 +6,8 @@ import java.awt.Image;
 import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,6 +29,7 @@ import javax.swing.UIManager;
 import modelo.Atenea;
 
 import javax.swing.JSeparator;
+import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.SwingConstants;
 
@@ -60,7 +63,7 @@ public class VistaMenuPrincipal {
 //		frame.getContentPane().setBackground(new Color(85, 107, 47));
 //		frame.getContentPane().setForeground(Color.WHITE);
 //		frame.setForeground(Color.GRAY);
-		frame.setBounds(100, 100, 679, 632);
+		frame.setBounds(100, 100, 679, 588);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
@@ -99,18 +102,13 @@ public class VistaMenuPrincipal {
 			      });
 			}
 		});
-		btnHistorialDeVentas.setBounds(116, 430, 186, 23);
+		btnHistorialDeVentas.setBounds(116, 289, 186, 23);
 		frame.getContentPane().add(btnHistorialDeVentas);
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setIcon(new ImageIcon(VistaMenuPrincipal.class.getResource("/imagenes/historialventas.jpg")));
-		lblNewLabel_2.setBounds(67, 421, 43, 45);
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon(VistaMenuPrincipal.class.getResource("/imagenes/historialventas.png")));
+		lblNewLabel_2.setBounds(67, 278, 43, 45);
 		frame.getContentPane().add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setIcon(new ImageIcon(VistaMenuPrincipal.class.getResource("/imagenes/nuevaVenta.png")));
-		lblNewLabel_3.setBounds(67, 285, 39, 34);
-		frame.getContentPane().add(lblNewLabel_3);
 		
 		JLabel label = new JLabel(""); 
 		
@@ -125,45 +123,31 @@ public class VistaMenuPrincipal {
 			      });
 			}
 		});
-		btnVerStockDisponible.setBounds(116, 477, 186, 23);
+		btnVerStockDisponible.setBounds(116, 432, 186, 23);
 		frame.getContentPane().add(btnVerStockDisponible);
 		atenea.getStock().calcularFaltas(atenea.getCatalogo());
 		if (atenea.getStock().faltaStock()) {
 			label.setIcon(new ImageIcon(VistaMenuPrincipal.class.getResource("/imagenes/faltastock.png")));
 		}
 		else {
-			label.setIcon(new ImageIcon(VistaMenuPrincipal.class.getResource("/imagenes/nofaltastock.jpg")));
+			label.setIcon(new ImageIcon(VistaMenuPrincipal.class.getResource("/imagenes/nofaltastock.png")));
 		}
-		label.setBounds(67, 507, 43, 50);
+		label.setBounds(67, 420, 43, 50);
 		frame.getContentPane().add(label);
 		
-		JButton btnVerFaltasDe = new JButton("Faltas de stock");
+		JButton btnVerFaltasDe = new JButton("Informaci\u00F3n contable");
 		btnVerFaltasDe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
 			         @Override
 			         public void run() {
-			            new VistaFaltasStock(atenea); 
+			            new VistaResumenContable(atenea); 
 			         }
 			      });
 			}
 		});
-		btnVerFaltasDe.setBounds(116, 524, 186, 23);
+		btnVerFaltasDe.setBounds(116, 480, 186, 23);
 		frame.getContentPane().add(btnVerFaltasDe);
-		
-		JButton btnRegistrarNuevaVenta = new JButton("Registrar nueva venta");
-		btnRegistrarNuevaVenta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				 SwingUtilities.invokeLater(new Runnable() {
-			         @Override
-			         public void run() {
-			            new VistaRegistroVenta(atenea, label); 
-			         }
-			      });
-			}
-		});
-		btnRegistrarNuevaVenta.setBounds(116, 289, 186, 23);
-		frame.getContentPane().add(btnRegistrarNuevaVenta);
 		
 		JLabel label_2 = new JLabel("");
 		label_2.setBounds(617, 166, 20, 14);
@@ -171,21 +155,16 @@ public class VistaMenuPrincipal {
 		
 		JLabel lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4.setIcon(new ImageIcon(VistaMenuPrincipal.class.getResource("/imagenes/logo2.jpg")));
-		lblNewLabel_4.setBounds(353, 289, 249, 244);
+		lblNewLabel_4.setBounds(388, 258, 249, 244);
 		frame.getContentPane().add(lblNewLabel_4);
-		
-		JLabel lblNewLabel_5 = new JLabel("");
-		lblNewLabel_5.setIcon(new ImageIcon(VistaMenuPrincipal.class.getResource("/imagenes/stock.jpg")));
-		lblNewLabel_5.setBounds(67, 466, 48, 34);
-		frame.getContentPane().add(lblNewLabel_5);
 		
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);
-		separator.setBounds(27, 308, 8, 213);
+		separator.setBounds(24, 308, 7, 162);
 		frame.getContentPane().add(separator);
 		
 		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(67, 568, 249, 14);
+		separator_2.setBounds(67, 529, 249, 14);
 		frame.getContentPane().add(separator_2);
 		
 		JLabel lblNewLabel_6 = new JLabel("");
@@ -209,8 +188,77 @@ public class VistaMenuPrincipal {
 		
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(VistaMenuPrincipal.class.getResource("/imagenes/reservas.jpg")));
-		label_1.setBounds(67, 375, 35, 34);
+		label_1.setBounds(75, 375, 35, 34);
 		frame.getContentPane().add(label_1);
+		
+		JLabel lblNewLabel_3 = new JLabel("");
+		lblNewLabel_3.setIcon(new ImageIcon(VistaMenuPrincipal.class.getResource("/imagenes/informacioncontable.png")));
+		lblNewLabel_3.setBounds(69, 473, 46, 39);
+		frame.getContentPane().add(lblNewLabel_3);
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SwingUtilities.invokeLater(new Runnable() {
+			         @Override
+			         public void run() {
+			            new VistaRegistroVenta(atenea, label); 
+			         }
+			      });
+			}
+		});
+		btnNewButton.setToolTipText("Registrar nueva venta");
+		btnNewButton.setIcon(new ImageIcon(VistaMenuPrincipal.class.getResource("/imagenes/new.jpg")));
+		btnNewButton.setBounds(312, 289, 26, 26);
+		frame.getContentPane().add(btnNewButton);
+		
+		JButton button = new JButton("");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SwingUtilities.invokeLater(new Runnable() {
+			         @Override
+			         public void run() {
+			            new VistaAgregarProducto(atenea, new JComboBox<String>()); 
+			         }
+			      });
+			}
+		});
+		button.setToolTipText("Registrar nuevo producto");
+		button.setIcon(new ImageIcon(VistaMenuPrincipal.class.getResource("/imagenes/new.jpg")));
+		button.setBounds(312, 333, 26, 26);
+		frame.getContentPane().add(button);
+		
+		JButton button_1 = new JButton("");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SwingUtilities.invokeLater(new Runnable() {
+			         @Override
+			         public void run() {
+			            new VistaRegistroReserva(atenea, label, new JComboBox<String>()); 
+			         }
+			      });
+			}
+		});
+		button_1.setIcon(new ImageIcon(VistaMenuPrincipal.class.getResource("/imagenes/new.jpg")));
+		button_1.setToolTipText("Registrar nueva reserva");
+		button_1.setBounds(312, 383, 26, 26);
+		frame.getContentPane().add(button_1);
+		
+		JButton button_2 = new JButton("");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SwingUtilities.invokeLater(new Runnable() {
+			         @Override
+			         public void run() {
+			            new VistaRegistrarCompraStock(atenea, new JComboBox<String>(), label, new JTextField()); 
+			         }
+			      });
+			}
+		});
+		button_2.setIcon(new ImageIcon(VistaMenuPrincipal.class.getResource("/imagenes/new.jpg")));
+		button_2.setToolTipText("Registrar compra de mercader\u00EDa");
+		button_2.setBounds(312, 432, 26, 26);
+		frame.getContentPane().add(button_2);
 		
 		btnCatlogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

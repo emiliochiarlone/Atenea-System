@@ -132,7 +132,7 @@ public class VistaEditarProductosReserva extends JFrame {
 								}
 								atenea.getStock().calcularFaltas(atenea.getCatalogo());  // Actualiza las faltas de stock
 								if (atenea.getStock().getFaltasStock().isEmpty()) {
-									label.setIcon(new ImageIcon(VistaMenuPrincipal.class.getResource("/imagenes/nofaltastock.jpg"))); // Cambia el icono del menu pricipal
+									label.setIcon(new ImageIcon(VistaMenuPrincipal.class.getResource("/imagenes/nofaltastock.png"))); // Cambia el icono del menu pricipal
 								}
 								else {
 									label.setIcon(new ImageIcon(VistaMenuPrincipal.class.getResource("/imagenes/faltastock.png")));

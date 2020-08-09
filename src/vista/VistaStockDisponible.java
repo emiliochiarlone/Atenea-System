@@ -37,7 +37,7 @@ public class VistaStockDisponible {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(Atenea bevande, JLabel label) {
+	private void initialize(Atenea atenea, JLabel label) {
 		frame = new JFrame();
 		frame.setVisible(true);
 		frame.setBounds(100, 100, 529, 163);
@@ -54,7 +54,7 @@ public class VistaStockDisponible {
 		cbProductos.setBounds(154, 9, 349, 22);
 		frame.getContentPane().add(cbProductos);
 		
-		ArrayList<ProdVenta> prodsventa = bevande.getStock().getProductos();
+		ArrayList<ProdVenta> prodsventa = atenea.getStock().getProductos();
 		
 		JButton btnNewButton = new JButton("Registrar compra de mercader\u00EDa");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -62,13 +62,13 @@ public class VistaStockDisponible {
 				SwingUtilities.invokeLater(new Runnable() {
 			         @Override
 			         public void run() {
-			            new VistaRegistrarCompraStock(bevande, cbProductos, label, tfValorStock ); 
+			            new VistaRegistrarCompraStock(atenea, cbProductos, label, tfValorStock ); 
 			            
 			         }
 			      });
 			}
 		});
-		btnNewButton.setBounds(154, 90, 232, 23);
+		btnNewButton.setBounds(271, 81, 232, 32);
 		frame.getContentPane().add(btnNewButton);
 		
 		JLabel lblValorDeStock = new JLabel("Valor de Stock:");
@@ -80,14 +80,28 @@ public class VistaStockDisponible {
 		tfValorStock.setBounds(154, 50, 96, 20);
 		frame.getContentPane().add(tfValorStock);
 		tfValorStock.setColumns(10);
-		tfValorStock.setText(Double.toString(bevande.getStock().getValorTotal(bevande.getCatalogo())));
+		tfValorStock.setText(Double.toString(atenea.getStock().getValorTotal(atenea.getCatalogo())));
 		
-		ArrayList<ProdVenta> prodstock = bevande.getStock().getProductos();
+		JButton btnVerFaltasDe = new JButton("Ver faltas de stock");
+		btnVerFaltasDe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SwingUtilities.invokeLater(new Runnable() {
+			         @Override
+			         public void run() {
+			            new VistaFaltasStock(atenea); 
+			         }
+			      });
+			}
+		});
+		btnVerFaltasDe.setBounds(10, 81, 232, 32);
+		frame.getContentPane().add(btnVerFaltasDe);
+		
+		ArrayList<ProdVenta> prodstock = atenea.getStock().getProductos();
 		ArrayList<String> prodnombres = new ArrayList<String>();
 		
 		
 		for (ProdVenta i: prodstock) {
-			prodnombres.add(bevande.getCatalogo().getProducto(i.getId_producto()).getNombre() + "     x     " + i.getCantidad());
+			prodnombres.add(atenea.getCatalogo().getProducto(i.getId_producto()).getNombre() + "     x     " + i.getCantidad());
 		}
 		Collections.sort(prodnombres);
 		for (String i: prodnombres) {

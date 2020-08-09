@@ -255,7 +255,7 @@ public class VistaRegistroVenta extends JFrame {
 								else {
 									JOptionPane.showMessageDialog(null, "Venta registrada correctamente");
 									if (atenea.getStock().getFaltasStock().isEmpty()) {
-							    		label.setIcon(new ImageIcon(VistaMenuPrincipal.class.getResource("/imagenes/nofaltastock.jpg")));
+							    		label.setIcon(new ImageIcon(VistaMenuPrincipal.class.getResource("/imagenes/nofaltastock.png")));
 							    	}
 							    	else {
 							    		label.setIcon(new ImageIcon(VistaMenuPrincipal.class.getResource("/imagenes/faltastock.png")));

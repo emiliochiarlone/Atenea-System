@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class HistorialVentas implements Serializable, iAlmacenable {
 	
@@ -75,6 +76,36 @@ public class HistorialVentas implements Serializable, iAlmacenable {
 		double total = 0;
 		for (Venta i: ventas) {
 			total = total + i.getGanancia();
+		}
+		return total;
+	}
+	
+	public double calcularGananciaEntreFechas (Date fechaDesde, Date fechaHasta) {
+		double total = 0;
+		for (Venta i: this.ventas) {
+			if (i.getFecha().after(fechaDesde) && i.getFecha().before(fechaHasta)){
+				total = total + i.getGanancia();
+			}
+		}
+		return total;
+	}
+	
+	public int cantidadVentasEntreFechas (Date fechaDesde, Date fechaHasta) {
+		int total = 0;
+		for (Venta i: this.ventas) {
+			if (i.getFecha().after(fechaDesde) && i.getFecha().before(fechaHasta)){
+				total = total + 1;
+			}
+		}
+		return total;
+	}
+	
+	public double getDineroTotalEntreFechas(Date fechaDesde, Date fechaHasta) {
+		double total = 0;
+		for (Venta i: this.ventas) {
+			if (i.getFecha().after(fechaDesde) && i.getFecha().before(fechaHasta)){
+				total = total + i.getMonto();
+			}
 		}
 		return total;
 	}

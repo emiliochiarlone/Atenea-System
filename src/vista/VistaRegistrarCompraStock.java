@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 
 public class VistaRegistrarCompraStock {
 
-	private JFrame frame;
+	private JFrame frmRegistrarCompraDe;
 
 	public VistaRegistrarCompraStock(Atenea atenea, JComboBox cbProductos, JLabel label, JTextField textfield) {
 		initialize(atenea, cbProductos, label, textfield);
@@ -36,58 +36,59 @@ public class VistaRegistrarCompraStock {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(Atenea atenea, JComboBox pcbProductos, JLabel label, JTextField textfield) {
-		frame = new JFrame();
-		frame.setVisible(true);
-		frame.setBounds(100, 100, 312, 434);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmRegistrarCompraDe = new JFrame();
+		frmRegistrarCompraDe.setTitle("Registrar compra de stock");
+		frmRegistrarCompraDe.setVisible(true);
+		frmRegistrarCompraDe.setBounds(100, 100, 312, 434);
+		frmRegistrarCompraDe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frmRegistrarCompraDe.getContentPane().setLayout(null);
 		
 		JComboBox cbProductos = new JComboBox();
 		cbProductos.setBounds(97, 11, 181, 22);
-		frame.getContentPane().add(cbProductos);
+		frmRegistrarCompraDe.getContentPane().add(cbProductos);
 		
 		JSpinner spinner = new JSpinner();
 		spinner.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 		spinner.setBounds(110, 60, 46, 20);
-		frame.getContentPane().add(spinner);
+		frmRegistrarCompraDe.getContentPane().add(spinner);
 		
 		JLabel lblProducto = new JLabel("Producto:");
 		lblProducto.setBounds(22, 15, 65, 14);
-		frame.getContentPane().add(lblProducto);
+		frmRegistrarCompraDe.getContentPane().add(lblProducto);
 		
 		JLabel lblCantidad = new JLabel("Cantidad:");
 		lblCantidad.setBounds(22, 63, 65, 14);
-		frame.getContentPane().add(lblCantidad);
+		frmRegistrarCompraDe.getContentPane().add(lblCantidad);
 		
 		ArrayList<ProdVenta> prodcompra = new ArrayList<ProdVenta>();
 		JButton btnAgregarProducto = new JButton("Agregar Producto");
 		btnAgregarProducto.setBounds(56, 110, 181, 23);
-		frame.getContentPane().add(btnAgregarProducto);
+		frmRegistrarCompraDe.getContentPane().add(btnAgregarProducto);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(34, 161, 230, 2);
-		frame.getContentPane().add(separator);
+		frmRegistrarCompraDe.getContentPane().add(separator);
 		
 		JComboBox cbProdCompra = new JComboBox();
 		cbProdCompra.setMaximumRowCount(16);
 		cbProdCompra.setBounds(34, 229, 222, 22);
-		frame.getContentPane().add(cbProdCompra);
+		frmRegistrarCompraDe.getContentPane().add(cbProdCompra);
 		
 		JLabel lblProductosDeLa = new JLabel("Productos de la compra:");
 		lblProductosDeLa.setBounds(81, 174, 166, 14);
-		frame.getContentPane().add(lblProductosDeLa);
+		frmRegistrarCompraDe.getContentPane().add(lblProductosDeLa);
 		
 		JLabel lblProducto_1 = new JLabel("Producto");
 		lblProducto_1.setBounds(42, 207, 76, 14);
-		frame.getContentPane().add(lblProducto_1);
+		frmRegistrarCompraDe.getContentPane().add(lblProducto_1);
 		
 		JLabel lblX = new JLabel("X");
 		lblX.setBounds(128, 207, 46, 14);
-		frame.getContentPane().add(lblX);
+		frmRegistrarCompraDe.getContentPane().add(lblX);
 		
 		JLabel lblCantidad_1 = new JLabel("Cantidad");
 		lblCantidad_1.setBounds(177, 207, 46, 14);
-		frame.getContentPane().add(lblCantidad_1);
+		frmRegistrarCompraDe.getContentPane().add(lblCantidad_1);
 		
 		JButton btnEliminarTodosLos = new JButton("Eliminar todos los productos");
 		btnEliminarTodosLos.addActionListener(new ActionListener() {
@@ -97,7 +98,7 @@ public class VistaRegistrarCompraStock {
 			}
 		});
 		btnEliminarTodosLos.setBounds(22, 278, 256, 31);
-		frame.getContentPane().add(btnEliminarTodosLos);
+		frmRegistrarCompraDe.getContentPane().add(btnEliminarTodosLos);
 		
 		JButton btnRegistrarCompra = new JButton("Registrar compra");
 		btnRegistrarCompra.addActionListener(new ActionListener() {
@@ -115,13 +116,13 @@ public class VistaRegistrarCompraStock {
 						ArrayList<ProdVenta> prodstock = atenea.getStock().getProductos();
 						pcbProductos.removeAllItems();
 						if (atenea.getStock().getFaltasStock().isEmpty()) {
-							label.setIcon(new ImageIcon(VistaMenuPrincipal.class.getResource("/imagenes/nofaltastock.jpg")));
+							label.setIcon(new ImageIcon(VistaMenuPrincipal.class.getResource("/imagenes/nofaltastock.png")));
 						}
 						for (ProdVenta i: prodstock) {
 							pcbProductos.addItem(atenea.getCatalogo().getProducto(i.getId_producto()).getNombre() + " X " + i.getCantidad());
 						}
 						textfield.setText(Double.toString(atenea.getStock().getValorTotal(atenea.getCatalogo())));
-						frame.dispose();
+						frmRegistrarCompraDe.dispose();
 					}
 				}
 				catch (IOException e1) {
@@ -132,11 +133,11 @@ public class VistaRegistrarCompraStock {
 			}
 		});
 		btnRegistrarCompra.setBounds(44, 359, 193, 23);
-		frame.getContentPane().add(btnRegistrarCompra);
+		frmRegistrarCompraDe.getContentPane().add(btnRegistrarCompra);
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(34, 334, 230, 2);
-		frame.getContentPane().add(separator_1);
+		frmRegistrarCompraDe.getContentPane().add(separator_1);
 		
 		ArrayList<Producto> catalogo = atenea.getCatalogo().getProductos();
 		ArrayList<String> catalogonombres = new ArrayList<String>();
